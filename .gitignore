@@ -1,0 +1,46 @@
+# --- Python & Environment ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# --- OS & IDE ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+# Optional: Ignore execution outputs if you only want to commit code
+# *.nbconvert.ipynb
+
+# --- Data Science Specific (CRITICAL) ---
+# Never commit datasets. They are large and often confidential.
+data/raw/*
+data/processed/*
+data/features/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/features/.gitkeep
+
+# --- Models ---
+# Large model binaries should not be in Git (use Git LFS if you really need them)
+models/*.pkl
+models/*.joblib
+models/*.bin
+models/*.pth
+models/*.h5
+
+# --- Logs & Artifacts ---
+*.log
+*.csv
+*.parquet
+dashboard/predictions.csv
+
+# --- Documentation ---
+# Ignore built documentation sites
+site/

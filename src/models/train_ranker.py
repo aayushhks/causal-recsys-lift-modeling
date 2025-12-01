@@ -1,4 +1,3 @@
-# src/models/train_ranker.py
 import pandas as pd
 import xgboost as xgb
 from sklearn.model_selection import train_test_split

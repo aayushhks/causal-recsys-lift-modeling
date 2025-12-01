@@ -1,29 +1,23 @@
-# Core Data Science
 numpy>=1.24.0
 pandas>=2.0.0
 scipy>=1.10.0
 scikit-learn>=1.3.0
 
-# Visualization
 matplotlib
 seaborn
 plotly>=5.15.0
 
-# Machine Learning (Ranking)
 xgboost>=2.0.0
 lightgbm>=4.0.0
 
-# Causal Inference & Uplift (The Advanced Stuff)
 dowhy
 econml
 causalml
 
-# Dashboarding
 streamlit>=1.25.0
 
-# Utilities
 tqdm
 pyarrow  # For fast Parquet I/O
 joblib   # For saving models
 
-BayesianABTester
+ab_test

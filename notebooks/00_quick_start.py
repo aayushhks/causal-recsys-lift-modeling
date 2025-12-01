@@ -1,5 +1,9 @@
-# run_ab_simulation.py
-from src.ab_test import BayesianABTester
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+
+from src.ab_testing.bayesian_engine import BayesianABTester
 import numpy as np
 
 
@@ -9,7 +13,7 @@ def run_simulation():
     # 1. Simulate Data
     # Control: 10,000 views, 1,000 clicks (10% CTR)
     # Treatment: 10,000 views, 1,150 clicks (11.5% CTR) -> This IS better
-    print(" Simulating data...")
+    print(" Simulating A/B Test Data...")
     tester.update('control', impressions=10000, clicks=1000)
     tester.update('treatment', impressions=10000, clicks=1150)
 

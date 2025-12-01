@@ -25,3 +25,5 @@ streamlit>=1.25.0
 tqdm
 pyarrow  # For fast Parquet I/O
 joblib   # For saving models
+
+BayesianABTester

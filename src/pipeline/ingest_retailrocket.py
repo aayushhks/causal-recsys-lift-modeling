@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # CONFIG
-RAW_INPUT_PATH = "data/raw/retailrocket_events.csv"  # The file you downloaded
-CANONICAL_OUTPUT_PATH = "data/raw/events.csv"  # The standard format your pipeline expects
+RAW_INPUT_PATH = "data/raw/retailrocket_events.csv"
+CANONICAL_OUTPUT_PATH = "data/raw/events.csv"
 
 
 def ingest_retailrocket():
@@ -24,7 +24,7 @@ def ingest_retailrocket():
         'visitorid': 'user_id',
         'itemid': 'item_id',
         'event': 'event_type',
-        'transactionid': 'transaction_id'  # Optional, but good to keep
+        'transactionid': 'transaction_id'
     })
 
     # 3. Standardize Timestamps

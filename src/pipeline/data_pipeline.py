@@ -1,4 +1,3 @@
-# src/pipeline/data_pipeline.py
 import pandas as pd
 import numpy as np
 import os
@@ -64,8 +63,8 @@ def run_pipeline():
     impressions = attribute_events(impressions, df, 'addtocart', 'added_to_cart')
     impressions = attribute_events(impressions, df, 'transaction', 'purchased')
 
-    # --- NEW: Assign A/B Test Variant (The Missing Step) ---
-    print("🎲 Assigning A/B Test Variants...")
+    # Assign A/B Test Variant
+    print(" Assigning A/B Test Variants...")
     np.random.seed(42)
     # 50/50 Split: Control vs Treatment
     impressions['variant'] = np.where(np.random.rand(len(impressions)) > 0.5, 'Treatment', 'Control')
@@ -75,7 +74,7 @@ def run_pipeline():
 
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     impressions.to_parquet(OUTPUT_PATH, index=False)
-    print(f"✅ Saved {len(impressions):,} rows with 'variant' column to {OUTPUT_PATH}")
+    print(f" Saved {len(impressions):,} rows with 'variant' column to {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":

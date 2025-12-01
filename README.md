@@ -1,4 +1,3 @@
-```markdown
 # E-Commerce Recommendation Engine: A/B Testing, Causal Inference & Revenue Impact Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)]()
@@ -9,7 +8,7 @@
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 - [Overview](#overview)
 - [Business Problem & KPIs](#business-problem--kpis)
 - [Architecture](#architecture)
@@ -42,6 +41,33 @@ This end-to-end platform combines:
 
 ---
 
+## Business Problem & KPIs
+
+**Goal:** Replace generic "Top Sellers" ranking with personalized causal recommendations to increase revenue.
+
+**Hypothesis:** 
+- **H0:** New recommendation algorithm has no effect on click-through rate
+- **H1:** New algorithm increases CTR by at least 2%
+
+### Success Metrics
+
+| Metric Type | Metric | Definition | Success Criteria |
+|-------------|--------|------------|------------------|
+| **Primary** | Click-Through Rate (CTR) | Clicks / Impressions | > 2.0% Relative Lift |
+| **Secondary** | Add-to-Cart Rate | Add-to-cart / Clicks | Positive lift |
+| **Secondary** | Purchase Conversion | Purchases / Users | > 1.5% Lift |
+| **Business Impact** | Revenue Per User (RPU) | Total Revenue / Active Users | > $0.50 increase |
+| **Business Impact** | Incremental Revenue | Revenue attributable solely to model | Stat-sig positive |
+| **Guardrail** | Page Load Time | p95 latency | < 2.5 seconds |
+| **Guardrail** | API Latency | Inference time | < 100ms (p99) |
+
+### Experiment Parameters
+- **Duration:** 14 days
+- **Sample Size:** 50,000 users per variant (80% power, α=0.05)
+- **Randomization Unit:** User ID
+- **Traffic Allocation:** 50% control, 50% treatment
+
+---
 ## Business Problem & KPIs
 
 **Goal:** Replace generic "Top Sellers" ranking with personalized causal recommendations to increase revenue.

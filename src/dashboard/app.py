@@ -1,15 +1,17 @@
-# dashboard/app.py
+# src/dashboard/app.py
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import sys
 import os
 
-# Add root to path so we can import src
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# 1. Add project root to path so we can import from src
+# We are in src/dashboard/app.py, so we go up TWO levels to reach root
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 
-from src.ab_test import BayesianABTester
-from src.causal_model import CausalInferenceEngine
+# 2. FIXED IMPORTS (Matching the new folder structure)
+from src.ab_testing.bayesian_engine import BayesianABTester
+from src.causal.inference_engine import CausalInferenceEngine
 
 # Configuration
 st.set_page_config(page_title="Causal RecSys Engine", layout="wide")
@@ -22,7 +24,6 @@ tab1, tab2 = st.tabs([" A/B Test Live Monitor", " Causal Impact Analysis"])
 with tab1:
     st.header("Real-time Bayesian A/B Test")
 
-    # Simulator Controls
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Control Group (A)")
@@ -44,8 +45,7 @@ with tab1:
         m1, m2, m3 = st.columns(3)
         m1.metric("Prob(B is Best)", f"{res['prob_being_best']:.2%}")
         m2.metric("Expected Lift", f"{res['expected_lift']:.2%}")
-        m3.metric("95% Credible Interval",
-                  f"[{res['lift_95_cred_interval'][0]:.2%}, {res['lift_95_cred_interval'][1]:.2%}]")
+        m3.metric("95% Interval", f"[{res['lift_95_cred_interval'][0]:.2%}, {res['lift_95_cred_interval'][1]:.2%}]")
 
         # Visualization
         samples_A = tester.sample_posterior('Control')
@@ -81,11 +81,8 @@ with tab2:
                 engine.identify_effect()
                 ate = engine.estimate_effect()
 
-                st.success(f" Estimated Average Treatment Effect (ATE): {ate:.4f}")
+                st.success(f"✅ Estimated Average Treatment Effect (ATE): {ate:.4f}")
 
                 st.info("Running Placebo Refutation...")
                 refute = engine.refute_estimate()
                 st.text(str(refute))
-    else:
-        st.info(
-            "Upload a CSV to run causal analysis. (You can use the dummy data generated in Step 2 if you convert it to CSV!)")
